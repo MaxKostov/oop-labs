@@ -139,7 +139,7 @@ class Classificator {
     if (!(age.equals("null") || Integer.parseInt(age) <= 200)) {
       return false;
     }
-    if (!(traits.equals("null") || traits.contains("EXTRA_ARMS") || traits.contains("EXTRA_HEAD") || traits.contains("GREEN") || traits.contains("BULKY"))) {
+    if (!(traits.equals("null") || ((traits.contains("EXTRA_ARMS") || traits.contains("EXTRA_HEAD"))) || (isHumanoid.equals("false") && (traits.contains("GREEN") || traits.contains("BULKY"))))) {
       return false;
     }
     return true;
