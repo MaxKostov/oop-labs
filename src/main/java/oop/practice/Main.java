@@ -39,7 +39,7 @@ public class Main {
       switch (userInput) {
         case "starwars":
           starWars.individuals().add(entryAsString);
-          System.out.println(": StarWars unit");
+          System.out.println(": StarWars unit ");
           break;
         case "hitchhikers":
           hitchhikers.individuals().add(entryAsString);
