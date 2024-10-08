@@ -23,7 +23,7 @@ public class Main {
           arrayNode.remove(j);
           j--;
         }
-        }
+      }
     }
 
     Universe starWars = new Universe("starwars", new ArrayList<>());
@@ -79,22 +79,84 @@ class Classificator {
     String age = unit.has("age") ? unit.get("age").toString() : "null";
     String traits = unit.has("traits") ? unit.get("traits").toString() : "null";
 
-    if (!((isHumanoid.equals("null") || isHumanoid.equals("false")) && (planet.equals("null") || planet.contains("Kashyyyk") || planet.contains("Endor")) && (age.equals("null") || Integer.parseInt(age) <= 400) && (traits.equals("null") || traits.contains("HAIRY") || traits.contains("TALL") || traits.contains("SHORT")))) {
+    if (!isStarWars(isHumanoid, planet, age, traits)) {
       universes.remove("starwars");
     }
-    if (!((isHumanoid.equals("null") || isHumanoid.equals("true")) && (planet.equals("null") || planet.contains("Asgard")) && (age.equals("null") || Integer.parseInt(age) <= 5000) && (traits.equals("null") || traits.contains("BLONDE") || traits.contains("TALL")))) {
+    if (!isMarvel(isHumanoid, planet, age, traits)) {
       universes.remove("marvel");
     }
 
-    if (!((planet.equals("null") || planet.contains("Betelgeuse") || planet.contains("Vogsphere")) && (age.equals("null") || Integer.parseInt(age) <= 200) && (traits.equals("null") || traits.contains("EXTRA_ARMS") || traits.contains("EXTRA_HEAD") || traits.contains("GREEN") || traits.contains("BULKY")))) {
+    if (!isHitchhikers(isHumanoid, planet, age, traits)) {
       universes.remove("hitchhikers");
     }
 
-    if (!((isHumanoid.equals("null") || isHumanoid.equals("true")) && (planet.equals("null") || planet.contains("Earth")) && (traits.equals("null") || traits.contains("BLONDE") || traits.contains("POINTY_EARS") || traits.contains("SHORT") || traits.contains("BULKY")))) {
+    if (!isRings(isHumanoid, planet, age, traits)) {
       universes.remove("rings");
     }
 
     return (universes.isEmpty() | (universes.size() != 1)) ? "null" : universes.get(0);
+  }
+
+  private static boolean isStarWars(String isHumanoid, String planet, String age, String traits) {
+
+    if (!(isHumanoid.equals("null") || isHumanoid.equals("false"))){
+      return false;
+    }
+    if (!(planet.equals("null") || planet.contains("Kashyyyk") || planet.contains("Endor"))) {
+      return false;
+    }
+    if (!(age.equals("null") || Integer.parseInt(age) <= 400)) {
+      return false;
+    }
+    if (!(traits.equals("null") || traits.contains("HAIRY") || traits.contains("TALL") || traits.contains("SHORT"))) {
+      return false;
+    }
+    return true;
+  }
+
+  private static boolean isMarvel(String isHumanoid, String planet, String age, String traits) {
+
+    if (!(isHumanoid.equals("null") || isHumanoid.equals("true"))){
+      return false;
+    }
+    if (!(planet.equals("null") || planet.contains("Asgard"))) {
+      return false;
+    }
+    if (!(age.equals("null") || Integer.parseInt(age) <= 5000)) {
+      return false;
+    }
+    if (!(traits.equals("null") || traits.contains("BLONDE") || traits.contains("TALL"))) {
+      return false;
+    }
+    return true;
+  }
+
+  private static boolean isHitchhikers(String isHumanoid, String planet, String age, String traits) {
+
+    if (!(planet.equals("null") || planet.contains("Betelgeuse") || planet.contains("Vogsphere"))) {
+      return false;
+    }
+    if (!(age.equals("null") || Integer.parseInt(age) <= 200)) {
+      return false;
+    }
+    if (!(traits.equals("null") || traits.contains("EXTRA_ARMS") || traits.contains("EXTRA_HEAD") || traits.contains("GREEN") || traits.contains("BULKY"))) {
+      return false;
+    }
+    return true;
+  }
+
+  private static boolean isRings(String isHumanoid, String planet, String age, String traits) {
+
+    if (!(isHumanoid.equals("null") || isHumanoid.equals("true"))){
+      return false;
+    }
+    if (!(planet.equals("null") || planet.contains("Earth"))) {
+      return false;
+    }
+    if (!(traits.equals("null") || traits.contains("BLONDE") || traits.contains("POINTY_EARS") || traits.contains("SHORT") || traits.contains("BULKY"))) {
+      return false;
+    }
+    return true;
   }
 }
 
