@@ -164,13 +164,16 @@ class RepRemover {
   private static ArrayList<String> fields = new ArrayList<>(Arrays.asList("isHumanoid", "planet", "age", "traits"));
 
   public static boolean areEqual(JsonNode unit1, JsonNode unit2) {
+    int coincidences = 0;
     for (String field : fields) {
       if (unit1.has(field) && unit2.has(field)) {
         if (!unit1.get(field).equals(unit2.get(field))) {
           return false;
         }
+        coincidences++;
       }
     }
-   return true;
+    if (coincidences >=2) return true;
+    return false;
   }
 }
